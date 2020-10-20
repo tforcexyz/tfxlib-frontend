@@ -28,6 +28,16 @@ task('bootstrap--4', function(callback) {
 
 task('bootstrap', series('bootstrap--3', 'bootstrap--4'))
 
+task('font-awesome--4', function(callback) {
+  src('./node_modules/font-awesome--4/css/**')
+    .pipe(dest('./build/font-awesome--4/css'));
+  src('./node_modules/font-awesome--4/fonts/**')
+    .pipe(dest('./build/font-awesome--4/fonts'));
+  callback();
+})
+
+task('font-awesome', series('font-awesome--4'))
+
 task('jquery--1', function(callback) {
   src('./node_modules/jquery--1/dist/**')
     .pipe(dest('./build/jquery--1/js'));
@@ -53,6 +63,6 @@ task('remove_build', function(callback) {
 
 task('jquery', series('jquery--1', 'jquery--2', 'jquery--3'))
 
-task('build', parallel('bootstrap', 'jquery'))
+task('build', parallel('bootstrap', 'font-awesome', 'jquery'))
 task('clean', series('remove_build'))
 
