@@ -4,7 +4,8 @@
   "description": "TFX Library: Web Resources",
   "main": "index.js",
   "scripts": {
-    "start": "node node_modules/gulp/bin/gulp.js"
+    "clean": "node node_modules/gulp/bin/gulp.js clean",
+    "start": "node node_modules/gulp/bin/gulp.js build"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,8 @@
     "gulp-uglify": "^3.0.2"
   },
   "dependencies": {
+    "bootstrap--3": "npm:bootstrap@^3.4.1",
+    "bootstrap--4": "npm:bootstrap@^4.5.3",
     "jquery--1": "npm:jquery@^1.12.4",
     "jquery--2": "npm:jquery@^2.2.4",
     "jquery--3": "npm:jquery@^3.5.1"
