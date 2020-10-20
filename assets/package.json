@@ -1,0 +1,30 @@
+{
+  "name": "tfxlib-webres",
+  "version": "1.0.0",
+  "description": "TFX Library: Web Resources",
+  "main": "index.js",
+  "scripts": {
+    "start": "node node_modules/gulp/bin/gulp.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tforcexyz/tfxlib-webres.git"
+  },
+  "author": "T-Force Xyz",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/tforcexyz/tfxlib-webres/issues"
+  },
+  "homepage": "https://github.com/tforcexyz/tfxlib-webres#readme",
+  "devDependencies": {
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-cli": "^2.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^4.0.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-uglify": "^3.0.2"
+  }
+}
