@@ -13,8 +13,26 @@ task('cleanup', function(callback) {
   callback();
 })
 
-task('jquery', function(callback) {
+task('jquery--1', function(callback) {
+  src('./node_modules/jquery--1/dist/**')
+    .pipe(dest('./build/jquery--1/js/'))
   callback();
 })
 
-task('default', series('cleanup'))
+task('jquery--2', function(callback) {
+  src('./node_modules/jquery--2/dist/**')
+    .pipe(dest('./build/jquery--2/js/'))
+  callback();
+})
+
+task('jquery--3', function(callback) {
+  src('./node_modules/jquery--3/dist/**')
+    .pipe(dest('./build/jquery--3/js/'))
+  callback();
+})
+
+task('jquery', series('jquery--1', 'jquery--2', 'jquery--3'))
+
+task('build', parallel('jquery'))
+
+task('default', series('cleanup', 'build'))

@@ -26,5 +26,10 @@
     "gulp-rename": "^2.0.0",
     "gulp-replace": "^1.0.0",
     "gulp-uglify": "^3.0.2"
+  },
+  "dependencies": {
+    "jquery--1": "npm:jquery@^1.12.4",
+    "jquery--2": "npm:jquery@^2.2.4",
+    "jquery--3": "npm:jquery@^3.5.1"
   }
 }
