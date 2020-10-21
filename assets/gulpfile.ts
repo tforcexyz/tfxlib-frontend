@@ -2,10 +2,12 @@ const { dest, parallel, src, series, task } = require('gulp');
 const del = require('del');
 const gulp = require('gulp');
 const concat = require('gulp-concat');
+const importCss = require('gulp-import-css');
 const minifyCss = require('gulp-clean-css');
 const less = require('gulp-less');
 const rename = require('gulp-rename');
 const replace = require('gulp-replace');
+const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const minifyJs = require('gulp-uglify');
 
@@ -105,6 +107,46 @@ task('jquery-migrate--3', function(callback) {
 })
 
 task('jquery-migrate', series('jquery-migrate--1', 'jquery-migrate--3'))
+
+task('jquery-ui--1', function(callback) {
+  const module_name = 'jquery-ui--1';
+  src([`./node_modules/${module_name}/themes/base/core.css`, `./node_modules/${module_name}/themes/base/*.css`, `!./node_modules/${module_name}/themes/base/all.css`, `!./node_modules/${module_name}/themes/base/base.css`, `!./node_modules/${module_name}/themes/base/theme.css`, `./node_modules/${module_name}/themes/base/theme.css`])
+    .pipe(concat('jquery-ui.css'))
+    .pipe(dest(`./build/${module_name}/css`))
+    .pipe(rename(function(path) {
+      path.basename += '.min';
+    }))
+    .pipe(minifyCss())
+    .pipe(dest(`./build/${module_name}/css`));
+  src([`./node_modules/${module_name}/themes/base/core.css`, `./node_modules/${module_name}/themes/base/*.css`, `!./node_modules/${module_name}/themes/base/all.css`, `!./node_modules/${module_name}/themes/base/base.css`, `!./node_modules/${module_name}/themes/base/theme.css`])
+    .pipe(concat('jquery-ui.structure.css'))
+    .pipe(dest(`./build/${module_name}/css`))
+    .pipe(rename(function(path) {
+      path.basename += '.min';
+    }))
+    .pipe(minifyCss())
+    .pipe(dest(`./build/${module_name}/css`));
+  src(`./node_modules/${module_name}/themes/base/theme.css`)
+    .pipe(concat('jquery-ui.theme.css'))
+    .pipe(dest(`./build/${module_name}/css`))
+    .pipe(rename(function(path) {
+      path.basename += '.min';
+    }))
+    .pipe(minifyCss())
+    .pipe(dest(`./build/${module_name}/css`));
+  src(`./node_modules/${module_name}/themes/base/images/**`)
+    .pipe(dest(`./build/${module_name}/css/images`));
+  src([`./node_modules/${module_name}/ui/version.js`, `./node_modules/${module_name}/ui/*.js`, `!./node_modules/${module_name}/ui/core.js`, `./node_modules/${module_name}/ui/effects/*.js`, `./node_modules/${module_name}/ui/widgets/*.js`])
+    .pipe(concat('jquery-ui.js'))
+    .pipe(dest(`./build/${module_name}/js`));
+  src([`./node_modules/${module_name}/ui/version.js`, `./node_modules/${module_name}/ui/*.js`, `!./node_modules/${module_name}/ui/core.js`, `./node_modules/${module_name}/ui/effects/*.js`, `./node_modules/${module_name}/ui/widgets/*.js`])
+    .pipe(minifyJs())
+    .pipe(concat('jquery-ui.min.js'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+
+task('jquery-ui', series('jquery-ui--1'))
 
 task('jquery-validation--1', function(callback) {
   const module_name = 'jquery-validation--1';
@@ -240,6 +282,5 @@ task('remove_build', function(callback) {
   callback();
 })
 
-task('build', parallel('animate.css', 'bootstrap', 'font-awesome', 'html5shiv', 'jquery', 'jquery-migrate', 'jquery-validation', 'modernizr', 'normalize.css', 'respond.js'))
+task('build', parallel('animate.css', 'bootstrap', 'font-awesome', 'html5shiv', 'jquery', 'jquery-migrate', 'jquery-ui', 'jquery-validation', 'modernizr', 'normalize.css', 'respond.js'))
 task('clean', series('remove_build'))
-
