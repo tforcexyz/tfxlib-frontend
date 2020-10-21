@@ -27,6 +27,53 @@ task('animate.css--4', function(callback) {
 task('animate.css', series('animate.css--3', 'animate.css--4'))
 
 
+//// PACKAGE aos ////
+task('aos--1', function(callback) {
+  const module_name = 'aos--1';
+  src(`./node_modules/${module_name}/dist/aos.css`)
+    .pipe(dest(`./build/${module_name}/css`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/css`));
+  src(`./node_modules/${module_name}/dist/aos.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('aos--2', function(callback) {
+  const module_name = 'aos--2';
+  src(`./node_modules/${module_name}/dist/aos.css`)
+    .pipe(dest(`./build/${module_name}/css`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/css`));
+  src(`./node_modules/${module_name}/dist/aos.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('aos', series('aos--1', 'aos--2'))
+
 //// PACKAGE bootstrap ////
 task('bootstrap--3', function(callback) {
   const module_name = 'bootstrap--3';
@@ -343,6 +390,59 @@ task('normalize.css--8', function(callback) {
 task('normalize.css', series('normalize.css--3', 'normalize.css--4', 'normalize.css--5', 'normalize.css--6', 'normalize.css--7', 'normalize.css--8'))
 
 
+//// PACKAGE owl.carousel ////
+task('owl.carousel--1', function(callback) {
+  const module_name = 'owl.carousel--1';
+  src(`./vendor/${module_name}/*.css`)
+    .pipe(concat('owl.carousel.css'))
+    .pipe(dest(`./build/${module_name}/css`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/css`));
+  src([`./vendor/${module_name}/*.gif`, `./vendor/${module_name}/*.png`])
+    .pipe(dest(`./build/${module_name}/css`));
+  src(`./vendor/${module_name}/owl.carousel.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('owl.carousel--2', function(callback) {
+  const module_name = 'owl.carousel--2';
+  src([`./node_modules/${module_name}/dist/assets/*.css`, `!./node_modules/${module_name}/dist/assets/*.min.css`])
+    .pipe(dest(`./build/${module_name}/css`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/css`));
+  src([`./node_modules/${module_name}/dist/assets/*.gif`, `./node_modules/${module_name}/dist/assets/*.png`])
+    .pipe(dest(`./build/${module_name}/css`));
+  src(`./node_modules/${module_name}/dist/owl.carousel.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('owl.carousel', series('owl.carousel--1', 'owl.carousel--2'))
+
+
 //// PACKAGE respond.js ////
 task('respond.js--1', function(callback) {
   const module_name = 'respond.js--1';
@@ -356,11 +456,98 @@ task('respond.js--1', function(callback) {
 task('respond.js', series('respond.js--1'))
 
 
+//// PACKAGE tiny-slider ////
+task('tiny-slider--0', function(callback) {
+  const module_name = 'tiny-slider--0';
+  src(`./node_modules/${module_name}/dist/tiny-slider.css`)
+    .pipe(dest(`./build/${module_name}/css`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/css`));
+  src(`./node_modules/${module_name}/dist/tiny-slider.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('tiny-slider--1', function(callback) {
+  const module_name = 'tiny-slider--1';
+  src(`./node_modules/${module_name}/dist/tiny-slider.css`)
+    .pipe(dest(`./build/${module_name}/css`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/css`));
+  src(`./node_modules/${module_name}/dist/tiny-slider.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('tiny-slider--2', function(callback) {
+  const module_name = 'tiny-slider--2';
+  src(`./node_modules/${module_name}/dist/tiny-slider.css`)
+    .pipe(dest(`./build/${module_name}/css`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/css`));
+  src(`./node_modules/${module_name}/dist/tiny-slider.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('tiny-slider', series('tiny-slider--0', 'tiny-slider--1', 'tiny-slider--2'))
+
+
+//// PACKAGE wowjs ////
+task('wowjs--1', function(callback) {
+  const module_name = 'wowjs--1';
+  src(`./node_modules/${module_name}/dist/wow.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('wowjs', series('wowjs--1'))
+
+
 //// MAINTAINANCE ////
 task('remove_build', function(callback) {
   del('./build');
   callback();
 })
 
-task('build', parallel('animate.css', 'bootstrap', 'font-awesome', 'html5shiv', 'jquery', 'jquery-appear', 'jquery-migrate', 'jquery-sticky', 'jquery-ui', 'jquery-validation', 'jquery.easing', 'jquery.stellar', 'modernizr', 'normalize.css', 'respond.js'))
+task('build', parallel('animate.css', 'aos', 'bootstrap', 'font-awesome', 'html5shiv', 'jquery', 'jquery-appear', 'jquery-migrate', 'jquery-sticky', 'jquery-ui', 'jquery-validation', 'jquery.easing', 'jquery.stellar', 'modernizr', 'normalize.css', 'owl.carousel', 'respond.js', 'tiny-slider', 'wowjs'))
 task('clean', series('remove_build'))

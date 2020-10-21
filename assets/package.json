@@ -40,6 +40,8 @@
   "dependencies": {
     "animate.css--3": "npm:animate.css@^3.7.2",
     "animate.css--4": "npm:animate.css@^4.1.1",
+    "aos--1": "npm:aos@^1.2.2",
+    "aos--2": "npm:aos@^2.3.4",
     "bootstrap--3": "npm:bootstrap@^3.4.1",
     "bootstrap--4": "npm:bootstrap@^4.5.3",
     "font-awesome--4": "npm:font-awesome@^4.7.0",
@@ -62,6 +64,11 @@
     "normalize.css--6": "npm:normalize.css@^6.0.0",
     "normalize.css--7": "npm:normalize.css@^7.0.0",
     "normalize.css--8": "npm:normalize.css@^8.0.1",
-    "respond.js--1": "npm:respond.js@^1.4.2"
+    "owl.carousel--2": "npm:owl.carousel@^2.3.4",
+    "respond.js--1": "npm:respond.js@^1.4.2",
+    "tiny-slider--0": "npm:tiny-slider@^0.7.0",
+    "tiny-slider--1": "npm:tiny-slider@^1.6.1",
+    "tiny-slider--2": "npm:tiny-slider@^2.9.3",
+    "wowjs--1": "npm:wowjs@^1.1.3"
   }
 }
