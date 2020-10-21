@@ -26,14 +26,23 @@
     "gulp-less": "^4.0.1",
     "gulp-rename": "^2.0.0",
     "gulp-replace": "^1.0.0",
+    "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2"
   },
   "dependencies": {
+    "animate.css--3": "npm:animate.css@^3.7.2",
+    "animate.css--4": "npm:animate.css@^4.1.1",
     "bootstrap--3": "npm:bootstrap@^3.4.1",
     "bootstrap--4": "npm:bootstrap@^4.5.3",
     "font-awesome--4": "npm:font-awesome@^4.7.0",
     "jquery--1": "npm:jquery@^1.12.4",
     "jquery--2": "npm:jquery@^2.2.4",
-    "jquery--3": "npm:jquery@^3.5.1"
+    "jquery--3": "npm:jquery@^3.5.1",
+    "normalize.css--3": "npm:normalize.css@^3.0.3",
+    "normalize.css--4": "npm:normalize.css@^4.2.0",
+    "normalize.css--5": "npm:normalize.css@^5.0.0",
+    "normalize.css--6": "npm:normalize.css@^6.0.0",
+    "normalize.css--7": "npm:normalize.css@^7.0.0",
+    "normalize.css--8": "npm:normalize.css@^8.0.1"
   }
 }

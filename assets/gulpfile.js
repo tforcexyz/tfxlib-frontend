@@ -6,7 +6,22 @@ var minifyCss = require('gulp-clean-css');
 var less = require('gulp-less');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
+var sourcemaps = require('gulp-sourcemaps');
 var minifyJs = require('gulp-uglify');
+
+task('animate.css--3', function(callback) {
+  src(['./node_modules/animate.css--3/animate.css', './node_modules/animate.css--3/animate.min.css'])
+    .pipe(dest('./build/animate.css--3/css'));
+  callback();
+})
+
+task('animate.css--4', function(callback) {
+  src(['./node_modules/animate.css--4/animate.css', './node_modules/animate.css--4/animate.min.css'])
+    .pipe(dest('./build/animate.css--4/css'));
+  callback();
+})
+
+task('animate.css', series('animate.css--3', 'animate.css--4'))
 
 task('bootstrap--3', function(callback) {
   src('./node_modules/bootstrap--3/dist/css/**')
@@ -56,13 +71,93 @@ task('jquery--3', function(callback) {
   callback();
 })
 
+task('jquery', series('jquery--1', 'jquery--2', 'jquery--3'))
+
+task('normalize.css--3', function(callback) {
+  src('./node_modules/normalize.css--3/normalize.css')
+    .pipe(dest('./build/normalize.css--3/css'))
+    .pipe(rename(function (path) {
+       path.basename += ".min";
+     }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest('./build/normalize.css--3/css'));
+  callback();
+})
+
+task('normalize.css--4', function(callback) {
+  src('./node_modules/normalize.css--4/normalize.css')
+    .pipe(dest('./build/normalize.css--4/css'))
+    .pipe(rename(function (path) {
+       path.basename += ".min";
+     }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest('./build/normalize.css--3/css'));
+  callback();
+})
+
+task('normalize.css--5', function(callback) {
+  src('./node_modules/normalize.css--5/normalize.css')
+    .pipe(dest('./build/normalize.css--5/css'))
+    .pipe(rename(function (path) {
+       path.basename += ".min";
+     }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest('./build/normalize.css--5/css'));
+  callback();
+})
+
+task('normalize.css--6', function(callback) {
+  src('./node_modules/normalize.css--6/normalize.css')
+    .pipe(dest('./build/normalize.css--6/css'))
+    .pipe(rename(function (path) {
+       path.basename += ".min";
+     }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest('./build/normalize.css--6/css'));
+  callback();
+})
+
+task('normalize.css--7', function(callback) {
+  src('./node_modules/normalize.css--7/normalize.css')
+    .pipe(dest('./build/normalize.css--7/css'))
+    .pipe(rename(function (path) {
+       path.basename += ".min";
+     }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest('./build/normalize.css--7/css'));
+  callback();
+})
+
+task('normalize.css--8', function(callback) {
+  src('./node_modules/normalize.css--8/normalize.css')
+    .pipe(dest('./build/normalize.css--8/css'))
+    .pipe(rename(function (path) {
+       path.basename += ".min";
+     }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest('./build/normalize.css--8/css'));
+  callback();
+})
+
+task('normalize.css', series('normalize.css--3', 'normalize.css--4', 'normalize.css--5', 'normalize.css--6', 'normalize.css--7', 'normalize.css--8'))
+
 task('remove_build', function(callback) {
   del('./build');
   callback();
 })
 
-task('jquery', series('jquery--1', 'jquery--2', 'jquery--3'))
-
-task('build', parallel('bootstrap', 'font-awesome', 'jquery'))
+task('build', parallel('animate.css', 'bootstrap', 'font-awesome', 'jquery', 'normalize.css'))
 task('clean', series('remove_build'))
 
