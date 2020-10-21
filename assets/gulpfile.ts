@@ -58,6 +58,15 @@ task('font-awesome--4', function(callback) {
 
 task('font-awesome', series('font-awesome--4'))
 
+task('html5shiv--3', function(callback) {
+  const module_name = 'html5shiv--3';
+  src(`./node_modules/${module_name}/dist/**`)
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+
+task('html5shiv', series('html5shiv--3'))
+
 task('jquery--1', function(callback) {
   const module_name = 'jquery--1';
   src(`./node_modules/${module_name}/dist/**`)
@@ -80,6 +89,22 @@ task('jquery--3', function(callback) {
 })
 
 task('jquery', series('jquery--1', 'jquery--2', 'jquery--3'))
+
+task('modernizr--3', function(callback) {
+  const module_name = 'modernizr--3';
+  src(`./node_modules/${module_name}/dist/*.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+       path.basename += ".min";
+     }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+
+task('modernizr', series('modernizr--3'))
 
 task('normalize.css--3', function(callback) {
   const module_name = 'normalize.css--3';
@@ -167,11 +192,23 @@ task('normalize.css--8', function(callback) {
 
 task('normalize.css', series('normalize.css--3', 'normalize.css--4', 'normalize.css--5', 'normalize.css--6', 'normalize.css--7', 'normalize.css--8'))
 
+task('respond.js--1', function(callback) {
+  const module_name = 'respond.js--1';
+  src(`./node_modules/${module_name}/dest/**`)
+    .pipe(rename(function (path) {
+       path.basename = path.basename.replace('.src', '');
+     }))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+
+task('respond.js', series('respond.js--1'))
+
 task('remove_build', function(callback) {
   del('./build');
   callback();
 })
 
-task('build', parallel('animate.css', 'bootstrap', 'font-awesome', 'jquery', 'normalize.css'))
+task('build', parallel('animate.css', 'bootstrap', 'font-awesome', 'html5shiv', 'jquery', 'modernizr', 'normalize.css', 'respond.js'))
 task('clean', series('remove_build'))
 
