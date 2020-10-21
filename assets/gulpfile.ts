@@ -92,6 +92,25 @@ task('jquery--3', function(callback) {
 
 task('jquery', series('jquery--1', 'jquery--2', 'jquery--3'))
 
+task('jquery-appear--0', function(callback) {
+  const module_name = 'jquery-appear--0';
+  src(`./node_modules/${module_name}/index.js`)
+    .pipe(rename(function (path) {
+      path.basename = 'jquery-appear';
+    }))
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += ".min";
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+
+task('jquery-appear', series('jquery-appear--0'))
+
 task('jquery-migrate--1', function(callback) {
   const module_name = 'jquery-migrate--1';
   src(`./node_modules/${module_name}/dist/jquery-migrate**`)
@@ -107,6 +126,22 @@ task('jquery-migrate--3', function(callback) {
 })
 
 task('jquery-migrate', series('jquery-migrate--1', 'jquery-migrate--3'))
+
+task('jquery-sticky--1', function(callback) {
+  const module_name = 'jquery-sticky--1';
+  src(`./node_modules/${module_name}/*.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function(path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+
+task('jquery-sticky', series('jquery-sticky--1'))
 
 task('jquery-ui--1', function(callback) {
   const module_name = 'jquery-ui--1';
@@ -162,6 +197,38 @@ task('jquery-validation--1', function(callback) {
 })
 
 task('jquery-validation', series('jquery-validation--1'))
+
+task('jquery.easing--1', function(callback) {
+  const module_name = 'jquery.easing--1';
+  src([`./node_modules/${module_name}/jquery.easing.js`, `./node_modules/${module_name}/jquery.easing.compatibility.js`])
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function(path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+
+task('jquery.easing', series('jquery.easing--1'))
+
+task('jquery.stellar--0', function(callback) {
+  const module_name = 'jquery.stellar--0';
+  src(`./node_modules/${module_name}/jquery.stellar.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function(path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+
+task('jquery.stellar', series('jquery.stellar--0'))
 
 task('modernizr--3', function(callback) {
   const module_name = 'modernizr--3';
@@ -282,5 +349,5 @@ task('remove_build', function(callback) {
   callback();
 })
 
-task('build', parallel('animate.css', 'bootstrap', 'font-awesome', 'html5shiv', 'jquery', 'jquery-migrate', 'jquery-ui', 'jquery-validation', 'modernizr', 'normalize.css', 'respond.js'))
+task('build', parallel('animate.css', 'bootstrap', 'font-awesome', 'html5shiv', 'jquery', 'jquery-appear', 'jquery-migrate', 'jquery-sticky', 'jquery-ui', 'jquery-validation', 'jquery.easing', 'jquery.stellar', 'modernizr', 'normalize.css', 'respond.js'))
 task('clean', series('remove_build'))
