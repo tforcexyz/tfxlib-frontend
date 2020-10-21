@@ -90,6 +90,37 @@ task('jquery--3', function(callback) {
 
 task('jquery', series('jquery--1', 'jquery--2', 'jquery--3'))
 
+task('jquery-migrate--1', function(callback) {
+  const module_name = 'jquery-migrate--1';
+  src(`./node_modules/${module_name}/dist/jquery-migrate**`)
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+
+task('jquery-migrate--3', function(callback) {
+  const module_name = 'jquery-migrate--3';
+  src(`./node_modules/${module_name}/dist/jquery-migrate**`)
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+
+task('jquery-migrate', series('jquery-migrate--1', 'jquery-migrate--3'))
+
+task('jquery-validation--1', function(callback) {
+  const module_name = 'jquery-validation--1';
+  src(`./node_modules/${module_name}/dist/*.js`)
+    .pipe(dest(`./build/${module_name}/js`));
+  src([`./node_modules/${module_name}/dist/localization/*.js`, `!./node_modules/${module_name}/dist/localization/*.min.js`])
+    .pipe(concat('localization.all.js'))
+    .pipe(dest(`./build/${module_name}/js`));
+  src(`./node_modules/${module_name}/dist/localization/*.min.js`)
+    .pipe(concat('localization.all.min.js'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+
+task('jquery-validation', series('jquery-validation--1'))
+
 task('modernizr--3', function(callback) {
   const module_name = 'modernizr--3';
   src(`./node_modules/${module_name}/dist/*.js`)
@@ -209,6 +240,6 @@ task('remove_build', function(callback) {
   callback();
 })
 
-task('build', parallel('animate.css', 'bootstrap', 'font-awesome', 'html5shiv', 'jquery', 'modernizr', 'normalize.css', 'respond.js'))
+task('build', parallel('animate.css', 'bootstrap', 'font-awesome', 'html5shiv', 'jquery', 'jquery-migrate', 'jquery-validation', 'modernizr', 'normalize.css', 'respond.js'))
 task('clean', series('remove_build'))
 
