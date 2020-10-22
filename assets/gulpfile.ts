@@ -10,6 +10,7 @@ const replace = require('gulp-replace');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const minifyJs = require('gulp-uglify');
+const minifyJsOptions = { output: { comments: function(node, comment) { return /v\d\.\d\.\d/g.test(comment.value); } } }
 
 //// PACKAGE animate.css ////
 task('animate.css--3', function(callback) {
@@ -96,6 +97,76 @@ task('bootstrap--4', function(callback) {
 task('bootstrap', series('bootstrap--3', 'bootstrap--4'))
 
 
+//// PACKAGE flickity ////
+task('flickity--0', function(callback) {
+  const module_name = 'flickity--0';
+  src(`./node_modules/${module_name}/dist/flickity.css`)
+    .pipe(dest(`./build/${module_name}/css`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/css`));
+  src(`./node_modules/${module_name}/dist/flickity.pkgd.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs(minifyJsOptions))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('flickity--1', function(callback) {
+  const module_name = 'flickity--1';
+  src(`./node_modules/${module_name}/dist/flickity.css`)
+    .pipe(dest(`./build/${module_name}/css`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/css`));
+  src(`./node_modules/${module_name}/dist/flickity.pkgd.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs(minifyJsOptions))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('flickity--2', function(callback) {
+  const module_name = 'flickity--2';
+  src(`./node_modules/${module_name}/dist/flickity.css`)
+    .pipe(dest(`./build/${module_name}/css`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/css`));
+  src(`./node_modules/${module_name}/dist/flickity.pkgd.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs(minifyJsOptions))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('flickity', series('flickity--0', 'flickity--1', 'flickity--2'))
+
+
 //// PACKAGE font-awesome ////
 task('font-awesome--4', function(callback) {
   const module_name = 'font-awesome--4';
@@ -116,6 +187,83 @@ task('html5shiv--3', function(callback) {
   callback();
 })
 task('html5shiv', series('html5shiv--3'))
+
+
+//// PACKAGE imagesloaded ////
+task('imagesloaded--3', function(callback) {
+  const module_name = 'imagesloaded--3';
+  src(`./node_modules/${module_name}/imagesloaded.pkgd.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs(minifyJsOptions))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('imagesloaded--4', function(callback) {
+  const module_name = 'imagesloaded--4';
+  src(`./node_modules/${module_name}/imagesloaded.pkgd.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs(minifyJsOptions))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('imagesloaded', series('imagesloaded--3', 'imagesloaded--4'))
+
+
+//// PACKAGE infinite-scroll ////
+task('infinite-scroll--3', function(callback) {
+  const module_name = 'infinite-scroll--3';
+  src(`./node_modules/${module_name}/dist/infinite-scroll.pkgd.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs(minifyJsOptions))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('infinite-scroll', series('infinite-scroll--3'))
+
+
+//// PACKAGE isotope-layout ////
+task('isotope-layout--2', function(callback) {
+  const module_name = 'isotope-layout--2';
+  src(`./node_modules/${module_name}/dist/isotope.pkgd.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs(minifyJsOptions))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('isotope-layout--3', function(callback) {
+  const module_name = 'isotope-layout--3';
+  src(`./node_modules/${module_name}/dist/isotope.pkgd.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs(minifyJsOptions))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('isotope-layout', series('isotope-layout--2', 'isotope-layout--3'))
 
 
 //// PACKAGE jquery ////
@@ -291,6 +439,36 @@ task('jquery.stellar--0', function(callback) {
 task('jquery.stellar', series('jquery.stellar--0'))
 
 
+//// PACKAGE masonry-layout ////
+task('masonry-layout--3', function(callback) {
+  const module_name = 'masonry-layout--3';
+  src(`./node_modules/${module_name}/dist/masonry.pkgd.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs(minifyJsOptions))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('masonry-layout--4', function(callback) {
+  const module_name = 'masonry-layout--4';
+  src(`./node_modules/${module_name}/dist/masonry.pkgd.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs(minifyJsOptions))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('masonry-layout', series('masonry-layout--3', 'masonry-layout--4'))
+
+
 //// PACKAGE modernizr ////
 task('modernizr--3', function(callback) {
   const module_name = 'modernizr--3';
@@ -443,6 +621,36 @@ task('owl.carousel--2', function(callback) {
 task('owl.carousel', series('owl.carousel--1', 'owl.carousel--2'))
 
 
+//// PACKAGE packery ////
+task('packery--1', function(callback) {
+  const module_name = 'packery--1';
+  src(`./node_modules/${module_name}/dist/packery.pkgd.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs(minifyJsOptions))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('packery--2', function(callback) {
+  const module_name = 'packery--2';
+  src(`./node_modules/${module_name}/dist/packery.pkgd.js`)
+    .pipe(dest(`./build/${module_name}/js`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyJs(minifyJsOptions))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./build/${module_name}/js`));
+  callback();
+})
+task('packery', series('packery--1', 'packery--2'))
+
+
 //// PACKAGE respond.js ////
 task('respond.js--1', function(callback) {
   const module_name = 'respond.js--1';
@@ -549,5 +757,5 @@ task('remove_build', function(callback) {
   callback();
 })
 
-task('build', parallel('animate.css', 'aos', 'bootstrap', 'font-awesome', 'html5shiv', 'jquery', 'jquery-appear', 'jquery-migrate', 'jquery-sticky', 'jquery-ui', 'jquery-validation', 'jquery.easing', 'jquery.stellar', 'modernizr', 'normalize.css', 'owl.carousel', 'respond.js', 'tiny-slider', 'wowjs'))
+task('build', parallel('animate.css', 'aos', 'bootstrap', 'flickity', 'font-awesome', 'html5shiv', 'imagesloaded', 'infinite-scroll', 'isotope-layout', 'jquery', 'jquery-appear', 'jquery-migrate', 'jquery-sticky', 'jquery-ui', 'jquery-validation', 'jquery.easing', 'jquery.stellar', 'masonry-layout', 'modernizr', 'normalize.css', 'owl.carousel', 'packery', 'respond.js', 'tiny-slider', 'wowjs'))
 task('clean', series('remove_build'))
