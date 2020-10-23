@@ -46,7 +46,7 @@ task('aos--1', function(callback) {
       path.basename += '.min';
     }))
     .pipe(sourcemaps.init())
-    .pipe(minifyJs())
+    .pipe(minifyJs(minifyJsOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(`./build/${module_name}/js`));
   callback();
@@ -68,7 +68,7 @@ task('aos--2', function(callback) {
       path.basename += '.min';
     }))
     .pipe(sourcemaps.init())
-    .pipe(minifyJs())
+    .pipe(minifyJs(minifyJsOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(`./build/${module_name}/js`));
   callback();
@@ -300,7 +300,7 @@ task('jquery-appear--0', function(callback) {
       path.basename += '.min';
     }))
     .pipe(sourcemaps.init())
-    .pipe(minifyJs())
+    .pipe(minifyJs(minifyJsOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(`./build/${module_name}/js`));
   callback();
@@ -332,7 +332,7 @@ task('jquery-sticky--1', function(callback) {
       path.basename += '.min';
     }))
     .pipe(sourcemaps.init())
-    .pipe(minifyJs())
+    .pipe(minifyJs(minifyJsOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(`./build/${module_name}/js`));
   callback();
@@ -380,7 +380,7 @@ task('jquery-ui--1', function(callback) {
     .pipe(dest(`./build/${module_name}/js`));
   src([`./node_modules/${module_name}/ui/version.js`, `./node_modules/${module_name}/ui/*.js`, `!./node_modules/${module_name}/ui/core.js`, `./node_modules/${module_name}/ui/effects/*.js`, `./node_modules/${module_name}/ui/widgets/*.js`])
     .pipe(sourcemaps.init())
-    .pipe(minifyJs())
+    .pipe(minifyJs(minifyJsOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(concat('jquery-ui.min.js'))
     .pipe(dest(`./build/${module_name}/js`));
@@ -414,7 +414,7 @@ task('jquery.easing--1', function(callback) {
       path.basename += '.min';
     }))
     .pipe(sourcemaps.init())
-    .pipe(minifyJs())
+    .pipe(minifyJs(minifyJsOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(`./build/${module_name}/js`));
   callback();
@@ -431,7 +431,7 @@ task('jquery.stellar--0', function(callback) {
       path.basename += '.min';
     }))
     .pipe(sourcemaps.init())
-    .pipe(minifyJs())
+    .pipe(minifyJs(minifyJsOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(`./build/${module_name}/js`));
   callback();
@@ -478,7 +478,7 @@ task('modernizr--3', function(callback) {
        path.basename += '.min';
      }))
     .pipe(sourcemaps.init())
-    .pipe(minifyJs())
+    .pipe(minifyJs(minifyJsOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(`./build/${module_name}/js`));
   callback();
@@ -589,7 +589,7 @@ task('owl.carousel--1', function(callback) {
       path.basename += '.min';
     }))
     .pipe(sourcemaps.init())
-    .pipe(minifyJs())
+    .pipe(minifyJs(minifyJsOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(`./build/${module_name}/js`));
   callback();
@@ -613,7 +613,7 @@ task('owl.carousel--2', function(callback) {
       path.basename += '.min';
     }))
     .pipe(sourcemaps.init())
-    .pipe(minifyJs())
+    .pipe(minifyJs(minifyJsOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(`./build/${module_name}/js`));
   callback();
@@ -682,7 +682,7 @@ task('tiny-slider--0', function(callback) {
       path.basename += '.min';
     }))
     .pipe(sourcemaps.init())
-    .pipe(minifyJs())
+    .pipe(minifyJs(minifyJsOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(`./build/${module_name}/js`));
   callback();
@@ -704,7 +704,7 @@ task('tiny-slider--1', function(callback) {
       path.basename += '.min';
     }))
     .pipe(sourcemaps.init())
-    .pipe(minifyJs())
+    .pipe(minifyJs(minifyJsOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(`./build/${module_name}/js`));
   callback();
@@ -726,7 +726,7 @@ task('tiny-slider--2', function(callback) {
       path.basename += '.min';
     }))
     .pipe(sourcemaps.init())
-    .pipe(minifyJs())
+    .pipe(minifyJs(minifyJsOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(`./build/${module_name}/js`));
   callback();
@@ -743,7 +743,7 @@ task('wowjs--1', function(callback) {
       path.basename += '.min';
     }))
     .pipe(sourcemaps.init())
-    .pipe(minifyJs())
+    .pipe(minifyJs(minifyJsOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(`./build/${module_name}/js`));
   callback();
