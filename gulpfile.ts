@@ -1,6 +1,5 @@
 const { dest, parallel, src, series, task } = require('gulp');
 const del = require('del');
-const gulp = require('gulp');
 const concat = require('gulp-concat');
 const importCss = require('gulp-import-css');
 const minifyCss = require('gulp-clean-css');
@@ -101,6 +100,25 @@ task('bootstrap--4', function(callback) {
 })
 task('bootstrap', series('bootstrap--3', 'bootstrap--4'))
 
+
+//// PACKAGE bootstrap ////
+task('eva-icons--1', function(callback) {
+  const module_name = 'eva-icons--1';
+  src(`./node_modules/${module_name}/style/eva-icons.css`)
+    .pipe(replace('./fonts/', '../fonts/'))
+    .pipe(dest(`./${outputDir}/${module_name}/css`))
+    .pipe(rename(function (path) {
+      path.basename += '.min';
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(`./${outputDir}/${module_name}/css`));
+  src(`./node_modules/${module_name}/style/fonts/**`)
+    .pipe(dest(`./${outputDir}/${module_name}/fonts`));
+  callback();
+})
+task('eva-icons', series('eva-icons--1'))
 
 //// PACKAGE flickity ////
 task('flickity--0', function(callback) {
@@ -762,5 +780,5 @@ task('remove_build', function(callback) {
   callback();
 })
 
-task('build', parallel('animate.css', 'aos', 'bootstrap', 'flickity', 'font-awesome', 'html5shiv', 'imagesloaded', 'infinite-scroll', 'isotope-layout', 'jquery', 'jquery-appear', 'jquery-migrate', 'jquery-sticky', 'jquery-ui', 'jquery-validation', 'jquery.easing', 'jquery.stellar', 'masonry-layout', 'modernizr', 'normalize.css', 'owl.carousel', 'packery', 'respond.js', 'tiny-slider', 'wowjs'))
+task('build', parallel('animate.css', 'aos', 'bootstrap', 'eva-icons', 'flickity', 'font-awesome', 'html5shiv', 'imagesloaded', 'infinite-scroll', 'isotope-layout', 'jquery', 'jquery-appear', 'jquery-migrate', 'jquery-sticky', 'jquery-ui', 'jquery-validation', 'jquery.easing', 'jquery.stellar', 'masonry-layout', 'modernizr', 'normalize.css', 'owl.carousel', 'packery', 'respond.js', 'tiny-slider', 'wowjs'))
 task('clean', series('remove_build'))
